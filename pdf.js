@@ -13136,17 +13136,17 @@ var PDFViewerApplication = {
   throw new Error('Not implemented: initPassiveLoading');
  },
  setTitleUsingUrl: function pdfViewSetTitleUsingUrl(url) {
-  this.url = url;
-  this.baseUrl = url.split('#')[0];
-  var title = getPDFFileNameFromURL(url, '');
-  if (!title) {
-   try {
-    title = decodeURIComponent(pdfjsLib.getFilenameFromUrl(url)) || url;
-   } catch (e) {
-    title = url;
-   }
-  }
-  this.setTitle(title);
+  // this.url = url;
+  // this.baseUrl = url.split('#')[0];
+  // var title = getPDFFileNameFromURL(url, '');
+  // if (!title) {
+  //  try {
+  //   title = decodeURIComponent(pdfjsLib.getFilenameFromUrl(url)) || url;
+  //  } catch (e) {
+  //   title = url;
+  //  }
+  // }
+  // this.setTitle(title);
  },
  setTitle: function pdfViewSetTitle(title) {
   if (this.isViewerEmbedded) {
