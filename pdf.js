@@ -13152,7 +13152,7 @@ var PDFViewerApplication = {
   if (this.isViewerEmbedded) {
    return;
   }
-  document.title = title;
+  // document.title = title;
  },
  close: function pdfViewClose() {
   var errorWrapper = this.appConfig.errorWrapper.container;
@@ -18684,19 +18684,22 @@ var SecondaryToolbar = function SecondaryToolbarClosure() {
   },
   _bindClickListeners: function SecondaryToolbar_bindClickListeners() {
    this.toggleButton.addEventListener('click', this.toggle.bind(this));
-   for (var button in this.buttons) {
-    var element = this.buttons[button].element;
-    var eventName = this.buttons[button].eventName;
-    var close = this.buttons[button].close;
-    element.addEventListener('click', function (eventName, close) {
-     if (eventName !== null) {
-      this.eventBus.dispatch(eventName, { source: this });
-     }
-     if (close) {
-      this.close();
-     }
-    }.bind(this, eventName, close));
-   }
+    for (var button in this.buttons) {
+        var element = this.buttons[button].element;
+        var eventName = this.buttons[button].eventName;
+        var close = this.buttons[button].close;
+        if (element) {
+            element.addEventListener('click', function (eventName, close) {
+                if (eventName !== null) {
+                    this.eventBus.dispatch(eventName, {source: this});
+                }
+                if (close) {
+                    this.close();
+                }
+            }.bind(this, eventName, close));
+
+        }
+    }
   },
   _bindHandToolListener: function SecondaryToolbar_bindHandToolListener(toggleHandToolButton) {
    var isHandToolActive = false;
